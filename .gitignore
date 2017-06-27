@@ -71,3 +71,5 @@ docs/_build/
 docker-compose-private.yml
 
 *.bak
+
+_build
