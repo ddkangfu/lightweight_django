@@ -1,13 +1,17 @@
-{% load staticfiles %}
+{% load staticfiles compress %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
     <meta name="Viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="{{ description|default:'Default prototype description' }}">
+    <meta name="keywords" content="{{ keywords|default:'prototype' }}">
     <title>{% block title %}Rapid Prototypes{% endblock %}</title>
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    {% endcompress %}
 </head>
 <body id="{% block body-id %}body{% endblock %}">
     {% block top-nav-wrapper %}
@@ -25,6 +29,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li {% if slug == 'index' %}class="active"{% endif %}><a href="/">Home</a></li>
+                    <li {% if slug == 'pricing' %}class="active"{% endif %}><a href="{% url 'page' 'pricing' %}">Pricing</a></li>
                     <li {% if slug == 'contact' %}class="active"{% endif %}><a href="{% url 'page' 'contact' %}">Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -35,7 +40,9 @@
     </div>
     {% endblock %}
     {% block content %}{% endblock %}
+    {% compress js %}
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% endcompress js %}
 </body>
 </html>
