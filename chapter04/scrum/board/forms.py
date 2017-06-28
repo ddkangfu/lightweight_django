@@ -25,7 +25,7 @@ class TaskFilter(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super(TaskFilter, self).__init__(*args, **kwargs)
-        self.filters['assigned'].extra.update({'to_find_name': User.USERNAME_FIELD})
+        self.filters['assigned'].extra.update({'to_field_name': User.USERNAME_FIELD})
 
 
 class SprintFilter(django_filters.FilterSet):
@@ -34,4 +34,4 @@ class SprintFilter(django_filters.FilterSet):
 
     class Meta:
         model = Sprint
-        fields = ('end_min', 'end_max', )
+        fields = ('end_mix', 'end_max', )
